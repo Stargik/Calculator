@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string-array name="matrix_array">
+        <item>2x2</item>
+        <item>3x3</item>
+    </string-array>
+</resources>
