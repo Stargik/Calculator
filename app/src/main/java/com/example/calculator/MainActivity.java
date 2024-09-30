@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedItem = parentView.getItemAtPosition(position).toString();
+                cleanAnswers();
                 if (selectedItem.equals("2x2")){
                     findViewById(R.id.editTextNumber13).setVisibility(View.GONE);
                     findViewById(R.id.editTextNumber23).setVisibility(View.GONE);
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.textViewResx3).setVisibility(View.VISIBLE);
                     findViewById(R.id.textViewRes6).setVisibility(View.VISIBLE);
                     findViewById(R.id.textViewResMatrixx3).setVisibility(View.VISIBLE);
+                    findViewById(R.id.lineChart).setVisibility(View.GONE);
                     matrixDem[0] = 3;
                 }
             }
@@ -134,40 +136,7 @@ public class MainActivity extends AppCompatActivity {
         x21.setText(df.format(resGauss[1]));
         x12.setText(df.format(resMatrix[0]));
         x22.setText(df.format(resMatrix[1]));
-
-        LineChart lineChart = findViewById(R.id.lineChart);
-
-        // First dataset (y = x^2)
-        ArrayList<Entry> entries1 = new ArrayList<>();
-        for (int x = -10; x <= 10; x++) {
-            float y1 = (float) ((coefs[0][2] - x * coefs[0][1]) / coefs[0][0]);  // y = x^2
-            entries1.add(new Entry(x, y1));
-        }
-        LineDataSet dataSet1 = new LineDataSet(entries1, "1");
-        dataSet1.setColor(R.color.purple);  // Set color for the first line
-        dataSet1.setLineWidth(2f);  // Set line thickness
-        dataSet1.setDrawCircles(false);  // Show circles at data points
-        dataSet1.setDrawValues(false);  // Disable value labels on the points
-
-        // Second dataset (y = x^3)
-        ArrayList<Entry> entries2 = new ArrayList<>();
-        for (int x = -10; x <= 10; x++) {
-            float y1 = (float) ((coefs[1][2] - x * coefs[1][1]) / coefs[1][0]);  // y = x^2
-            entries2.add(new Entry(x, y1));
-        }
-        LineDataSet dataSet2 = new LineDataSet(entries2, "y = x^3");
-        dataSet2.setColor(R.color.purple);  // Set color for the second line
-        dataSet2.setLineWidth(2f);  // Set line thickness
-        dataSet2.setCircleRadius(4f);  // Set circle size at data points
-        dataSet2.setDrawCircles(false);  // Show circles at data points
-        dataSet2.setDrawValues(false);  // Disable value labels on the points
-
-        // Create LineData object with both datasets
-        LineData lineData = new LineData(dataSet1, dataSet2);
-
-        // Set the data to the chart and refresh
-        lineChart.setData(lineData);
-        lineChart.invalidate();  // Refresh the chart
+        drawChart(coefs, resGauss[0], resGauss[1]);
     }
 
     private void calculateEquation3x3(){
@@ -209,6 +178,66 @@ public class MainActivity extends AppCompatActivity {
         x12.setText(df.format(resMatrix[0]));
         x22.setText(df.format(resMatrix[1]));
         x32.setText(df.format(resMatrix[2]));
+    }
+
+    private void cleanAnswers(){
+        final TextView x11 = (TextView) findViewById(R.id.textViewResx1);
+        final TextView x21 = (TextView) findViewById(R.id.textViewResx2);
+        final TextView x31 = (TextView) findViewById(R.id.textViewResx3);
+        final TextView x12 = (TextView) findViewById(R.id.textViewResMatrixx1);
+        final TextView x22 = (TextView) findViewById(R.id.textViewResMatrixx2);
+        final TextView x32 = (TextView) findViewById(R.id.textViewResMatrixx3);
+        x11.setText("");
+        x21.setText("");
+        x31.setText("");
+        x12.setText("");
+        x22.setText("");
+        x32.setText("");
+    }
+
+    private  void drawChart(double[][] coefs, double resultX, double resultY){
+        LineChart lineChart = findViewById(R.id.lineChart);
+        lineChart.setVisibility(View.VISIBLE);
+        ArrayList<Entry> entries1 = new ArrayList<>();
+        if (coefs[0][1] != 0){
+            for (int x = (int)resultX - 10; x <= (int)resultX + 10; x++) {
+                float x2 = (float) ((coefs[0][2] - x * coefs[0][0]) / coefs[0][1]);
+                entries1.add(new Entry(x, x2));
+            }
+        }else{
+            float x1 = (float) ((coefs[0][2]) / coefs[0][0]);
+            for (int x = (int)resultY - 10; x <= (int)resultY + 10; x++) {
+                entries1.add(new Entry(x1, x));
+            }
+        }
+        LineDataSet dataSet1 = new LineDataSet(entries1, "1");
+        dataSet1.setColor(R.color.purple);
+        dataSet1.setLineWidth(2f);
+        dataSet1.setDrawCircles(false);
+        dataSet1.setDrawValues(false);
+
+        ArrayList<Entry> entries2 = new ArrayList<>();
+        if (coefs[0][1] != 0) {
+            for (int x = (int) resultX - 10; x <= (int) resultX + 10; x++) {
+                float x2 = (float) ((coefs[1][2] - x * coefs[1][0]) / coefs[1][1]);
+                entries2.add(new Entry(x, x2));
+            }
+        }else{
+            float x1 = (float) ((coefs[1][2]) / coefs[1][0]);
+            for (int x = (int)resultY - 10; x <= (int)resultY + 10; x++) {
+                entries1.add(new Entry(x1, x));
+            }
+        }
+        LineDataSet dataSet2 = new LineDataSet(entries2, "2");
+        dataSet2.setColor(R.color.purple);
+        dataSet2.setLineWidth(2f);
+        dataSet2.setDrawCircles(false);
+        dataSet2.setDrawValues(false);
+
+        LineData lineData = new LineData(dataSet1, dataSet2);
+
+        lineChart.setData(lineData);
+        lineChart.invalidate();
     }
 
     private double[] calculateEquationGauss(double[][] coefs, int dem) {

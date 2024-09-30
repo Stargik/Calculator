@@ -405,6 +405,7 @@
             android:id="@+id/lineChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             tools:layout_editor_absoluteX="17dp"
             tools:layout_editor_absoluteY="554dp" />
     </LinearLayout>
