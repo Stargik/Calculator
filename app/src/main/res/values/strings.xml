@@ -12,6 +12,6 @@
         <item>2x2</item>
         <item>3x3</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="about_developer">About Developer</string>
 </resources>

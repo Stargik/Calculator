@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.calculator.MainFragment"
-        android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_infoFragment"
@@ -17,6 +16,5 @@
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.calculator.InfoFragment"
-        android:label="fragment_info"
         tools:layout="@layout/fragment_info" />
 </navigation>

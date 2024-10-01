@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,15 +22,17 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
-    private FragmentMainBinding binding;
-
     public MainFragment() {
         super(R.layout.fragment_main);
     }
 
+    private FragmentMainBinding binding;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Matrix Calculator");
         binding = FragmentMainBinding.bind(view);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 requireContext(),
