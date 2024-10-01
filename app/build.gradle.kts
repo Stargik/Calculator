@@ -35,6 +35,16 @@ android {
 }
 
 dependencies {
+    val fragment_version = "1.8.3"
+    val nav_version = "2.8.1"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+    implementation("androidx.fragment:fragment:$fragment_version")
+
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
