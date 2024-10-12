@@ -286,7 +286,6 @@ public class MainFragment extends Fragment {
             double t = b[p]; b[p] = b[max]; b[max] = t;
 
             if (Math.abs(A[p][p]) <= 1e-10) {
-                System.out.println("NO");
                 return new double[dem];
             }
 
@@ -393,9 +392,9 @@ public class MainFragment extends Fragment {
         String result = sb.toString();
         String filename;
         if (dem == 3){
-            filename = "coefs3.txt";
+            filename = getString(R.string.coefs3_txt);
         }else{
-            filename = "coefs2.txt";
+            filename = getString(R.string.coefs2_txt);
         }
         try (FileOutputStream fos = requireActivity().openFileOutput(filename, Context.MODE_PRIVATE)) {
             fos.write(result.getBytes());
@@ -406,9 +405,9 @@ public class MainFragment extends Fragment {
     private double[][] getCoefFromFile(int dem){
         String filename;
         if (dem == 3){
-            filename = "coefs3.txt";
+            filename = getString(R.string.coefs3_txt);
         }else{
-            filename = "coefs2.txt";
+            filename = getString(R.string.coefs2_txt);
         }
         List<double[]> rows = new ArrayList<>();
         double[][] coefs = new double[dem][dem + 1];

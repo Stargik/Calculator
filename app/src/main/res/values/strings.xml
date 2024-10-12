@@ -12,4 +12,6 @@
     </string-array>
     <string name="home">Калькулятор</string>
     <string name="about_developer">Про розробника</string>
+    <string name="coefs3_txt">coefs3.txt</string>
+    <string name="coefs2_txt">coefs2.txt</string>
 </resources>
