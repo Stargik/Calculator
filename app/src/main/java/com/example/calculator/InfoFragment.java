@@ -18,6 +18,6 @@ public class InfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("About Developer");
+        toolbar.setTitle(R.string.about_developer);
     }
 }

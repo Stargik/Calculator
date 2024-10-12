@@ -43,13 +43,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_info && currentFragment != R.id.infoFragment) {
-            Log.i("MainActivity", "NAVIGATE TO INFO FRAGMENT!");
             navController.navigate(R.id.action_mainFragment_to_infoFragment);
         } else if (itemId == R.id.nav_home && currentFragment != R.id.mainFragment){
-            Log.i("MainActivity", "NAVIGATE BACK TO HOME FRAGMENT!");
             navController.popBackStack();
-        } else {
-            Log.wtf("MainActivity", "???");
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;

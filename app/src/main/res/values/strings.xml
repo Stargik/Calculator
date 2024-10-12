@@ -1,17 +1,15 @@
 <resources>
-    <string name="app_name">Calculator</string>
-    <string name="info_name_label">Name:</string>
-    <string name="info_surname_label">Surname:</string>
-    <string name="info_last_name_label">Last Name:</string>
-    <string name="info_group_label">Group:</string>
+    <string name="app_name">Калькулятор</string>
+    <string name="info_name_label">Ім\'я:</string>
+    <string name="info_surname_label">Прізвище:</string>
+    <string name="info_group_label">Група:</string>
     <string name="actual_name">Олександр</string>
     <string name="actual_surname">Старжинський</string>
-    <string name="actual_last_name">Володимирович</string>
     <string name="actual_group">ТТП-42</string>
     <string-array name="matrix_array">
         <item>2x2</item>
         <item>3x3</item>
     </string-array>
-    <string name="home">Home</string>
-    <string name="about_developer">About Developer</string>
+    <string name="home">Калькулятор</string>
+    <string name="about_developer">Про розробника</string>
 </resources>
